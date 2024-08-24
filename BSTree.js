@@ -5,41 +5,56 @@ export default class BSTree {
     this.root = this.buildTree(arr, true);
   }
 
+  // Method to build a balanced BST
   buildTree(array, initialCall = false) {
-    let noDuplicatesArray;
+    // Base case
+    if (array.length <= 0) {
+      return null;
+    }
+    //Checks if this is the first call of this method.
     let sortedArray;
     if (initialCall) {
-      noDuplicatesArray = [...new Set(array)];
+      //If first call, sorts and removes and duplicates
+      const noDuplicatesArray = [...new Set(array)];
       sortedArray = mergeSort(noDuplicatesArray);
     } else {
       sortedArray = array;
     }
-
+    // Find the middle element of the array
     const middleArrayNumberIndex = Math.floor(sortedArray.length / 2);
+    const data = sortedArray[middleArrayNumberIndex];
 
-    const node = new BSTNode(sortedArray[middleArrayNumberIndex]);
+    // Split the array into left and right subarrays
+    const leftArray = sortedArray.slice(0, middleArrayNumberIndex);
+    const rightArray = sortedArray.slice(middleArrayNumberIndex + 1);
 
-    return node;
+    // Recursively build the left and right subtrees
+    return new BSTNode(
+      data,
+      this.buildTree(leftArray),
+      this.buildTree(rightArray)
+    );
   }
 
-  view() {
-    return this.root;
-  }
-  //
-  //
-  //
-  //
-
-  prettyPrint(node, prefix = "", isLeft = true) {
+  // Borrowed from The Odin Project
+  prettyPrint(node = this.root, prefix = "", isLeft = true) {
     if (node === null) {
       return;
     }
-    if (node.right !== null) {
-      prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    if (node.rightChild !== null) {
+      this.prettyPrint(
+        node.rightChild,
+        `${prefix}${isLeft ? "│   " : "    "}`,
+        false
+      );
     }
     console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-    if (node.left !== null) {
-      prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    if (node.leftChild !== null) {
+      this.prettyPrint(
+        node.leftChild,
+        `${prefix}${isLeft ? "    " : "│   "}`,
+        true
+      );
     }
   }
 }
