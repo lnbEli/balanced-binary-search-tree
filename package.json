@@ -1,0 +1,21 @@
+{
+  "name": "balanced-binary-search-tree",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "BSTree.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lnbEli/balanced-binary-search-tree.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lnbEli/balanced-binary-search-tree/issues"
+  },
+  "homepage": "https://github.com/lnbEli/balanced-binary-search-tree#readme"
+}
