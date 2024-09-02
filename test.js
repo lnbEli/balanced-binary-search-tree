@@ -7,24 +7,22 @@ const array = [
 // const array = [1];
 const tree = new BSTree(array);
 
-tree.insert(124);
-tree.insert(22);
+// tree.insert(124);
+// tree.insert(22);
 
-tree.deleteItem(124);
-tree.deleteItem(1);
+// tree.deleteItem(124);
+// tree.deleteItem(1);
 
-tree.deleteItem(11);
-tree.deleteItem(18);
-tree.deleteItem(67);
-tree.deleteItem(13);
-tree.deleteItem(15);
-tree.deleteItem(5);
-tree.deleteItem(7);
-tree.deleteItem(3);
-tree.deleteItem(8);
-tree.deleteItem(4);
-tree.deleteItem(14);
-tree.deleteItem(9);
-tree.deleteItem(17);
-
-tree.prettyPrint();
+// tree.deleteItem(11);
+// tree.deleteItem(18);
+// tree.deleteItem(67);
+// tree.deleteItem(13);
+// tree.deleteItem(15);
+// tree.deleteItem(5);
+// tree.deleteItem(7);
+// tree.deleteItem(3);
+// tree.deleteItem(8);
+// tree.deleteItem(4);
+// tree.deleteItem(14);
+// tree.deleteItem(9);
+// tree.deleteItem(17);

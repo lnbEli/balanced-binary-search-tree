@@ -175,4 +175,22 @@ export default class BSTree {
       return this.deleteItem(value, node.rightChild, node);
     }
   }
+
+  find(value, node = this.root) {
+    //Base case
+    if (node === null) {
+      console.log(`Value ${value} doesn't exist in the tree.`);
+      return null;
+    }
+    //Base case
+    if (value === node.data) {
+      return node;
+    }
+    //Recursive search
+    if (value < node.data) {
+      return this.find(value, node.leftChild);
+    } else {
+      return this.find(value, node.rightChild);
+    }
+  }
 }
