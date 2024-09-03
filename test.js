@@ -4,7 +4,7 @@ const array = [
   15, 17, 19, 167, 16345, 1324, 1, 5, 7,
 ];
 
-// const array = [1];
+// const array = [];
 const tree = new BSTree(array);
 
 // tree.insert(124);
@@ -26,3 +26,11 @@ const tree = new BSTree(array);
 // tree.deleteItem(14);
 // tree.deleteItem(9);
 // tree.deleteItem(17);
+tree.prettyPrint();
+
+function printData(node) {
+  console.log(node.data);
+}
+
+// tree.levelOrderRecursive(printData);
+// tree.levelOrder(printData);

@@ -95,7 +95,7 @@ export default class BSTree {
   }
 
   deleteItem(value, node = this.root, parentNode = null) {
-    //If value not found or root doesn't exist. What if parent node = null for root.
+    //If value not found or root doesn't exist.
     if (node === null) {
       return;
     }
@@ -192,5 +192,50 @@ export default class BSTree {
     } else {
       return this.find(value, node.rightChild);
     }
+  }
+
+  levelOrder(callback, array = [this.root]) {
+    if (callback === undefined || typeof callback !== "function") {
+      throw new Error("Callback function required");
+    }
+    //If root is null method terminates
+    if (this.root === null) {
+      return;
+    }
+    //Controls the queue of items being added to the array
+    while (array.length > 0) {
+      //Item about to leave queue has its childen added to queue.
+      if (array[0].leftChild !== null) {
+        array.push(array[0].leftChild);
+      }
+      if (array[0].rightChild !== null) {
+        array.push(array[0].rightChild);
+      }
+      //Removes item from queue and returns value to callback
+      callback(array.shift());
+    }
+  }
+
+  levelOrderRecursive(callback, array = [this.root]) {
+    if (callback === undefined || typeof callback !== "function") {
+      throw new Error("Callback function required");
+    }
+    //If root is null or array becomes empty method terminates
+    if (array.length <= 0 || this.root === null) {
+      return;
+    }
+    if (array[0].leftChild !== null) {
+      //Item about to leave queue has its left child added to queue
+      array.push(array[0].leftChild);
+    }
+    if (array[0].rightChild !== null) {
+      //Item about to leave queue has its right child added to queue
+      array.push(array[0].rightChild);
+    }
+    //Removes item from queue and returns value to callback
+    callback(array.shift());
+
+    //Recursive call
+    return this.levelOrderRecursive(callback, array);
   }
 }
