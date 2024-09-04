@@ -238,4 +238,53 @@ export default class BSTree {
     //Recursive call
     return this.levelOrderRecursive(callback, array);
   }
+
+  //Traverse the tree in respective depth-first order and pass each node to the provided callback.
+  //left>root>right
+  inOrder(callback, node = this.root) {
+    if (callback === undefined || typeof callback !== "function") {
+      throw new Error("Callback function required");
+    }
+    if (node === null) {
+      return;
+    }
+    this.inOrder(callback, node.leftChild);
+    callback(node);
+    this.inOrder(callback, node.rightChild);
+  }
+  //root>left>right
+  preOrder(callback, node = this.root) {
+    if (callback === undefined || typeof callback !== "function") {
+      throw new Error("Callback function required");
+    }
+    if (node === null) {
+      return;
+    }
+    callback(node);
+    this.inOrder(callback, node.leftChild);
+    this.inOrder(callback, node.rightChild);
+  }
+  //left>right>root
+  postOrder(callback, node = this.root) {
+    if (callback === undefined || typeof callback !== "function") {
+      throw new Error("Callback function required");
+    }
+    if (node === null) {
+      return;
+    }
+    this.inOrder(callback, node.leftChild);
+    this.inOrder(callback, node.rightChild);
+    callback(node);
+  }
+
+  height(node = this.root, edges = 0) {
+    if (node === null) {
+      return;
+    }
+
+    this.height(node.leftChild, ++edges);
+    this.height(node.rightChild, ++edges);
+
+    return edges;
+  }
 }

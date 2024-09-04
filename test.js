@@ -7,7 +7,7 @@ const array = [
 // const array = [];
 const tree = new BSTree(array);
 
-// tree.insert(124);
+tree.insert(3.4);
 // tree.insert(22);
 
 // tree.deleteItem(124);
@@ -34,3 +34,6 @@ function printData(node) {
 
 // tree.levelOrderRecursive(printData);
 // tree.levelOrder(printData);
+
+tree.inOrder(printData);
+console.log(tree.height());
