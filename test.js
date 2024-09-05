@@ -32,8 +32,20 @@ function printData(node) {
   console.log(node.data);
 }
 
-// tree.levelOrderRecursive(printData);
-// tree.levelOrder(printData);
+function counter(node) {}
 
-tree.inOrder(printData);
-console.log(tree.height());
+// tree.levelOrderRecursive(printData);
+tree.levelOrder(printData);
+
+// console.log(tree.find(3.4));
+// tree.inOrder(printData);
+// console.log(tree.root.leftChild.leftChild.rightChild);
+const node324 = tree.root.rightChild.rightChild.leftChild.leftChild;
+const root = tree.root;
+const node6345 = tree.root.rightChild.rightChild;
+const node1324 = tree.root.rightChild.rightChild.leftChild;
+// console.log("counter", tree.depth(node324));
+// console.log("counter", tree.height(node324));
+console.log("counter", tree.height(node1324));
+
+// console.log(tree.root.leftChild.leftChild.rightChild.data);

@@ -276,15 +276,30 @@ export default class BSTree {
     this.inOrder(callback, node.rightChild);
     callback(node);
   }
-
-  height(node = this.root, edges = 0) {
+  //Returns the given node’s height. Height is defined as the number of edges in the longest path from a given node to a leaf node.
+  height(node, counter = 0) {
     if (node === null) {
-      return;
+      return counter;
     }
 
-    this.height(node.leftChild, ++edges);
-    this.height(node.rightChild, ++edges);
-
-    return edges;
+    if (node.rightChild) {
+      return this.height(node.rightChild, ++counter);
+    }
+    if (node.leftChild) {
+      return this.height(node.leftChild, ++counter);
+    }
+  }
+  //Returns the given node’s depth. Depth is defined as the number of edges in the path from a given node to the tree’s root node.
+  depth(node, traverseNode = this.root, counter = 0) {
+    //Base case
+    if (node === traverseNode) {
+      return counter;
+    }
+    //Recursive search
+    if (node.data < traverseNode.data) {
+      return this.depth(node, traverseNode.leftChild, ++counter);
+    } else {
+      return this.depth(node, traverseNode.rightChild, ++counter);
+    }
   }
 }
