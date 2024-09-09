@@ -277,17 +277,32 @@ export default class BSTree {
     callback(node);
   }
   //Returns the given node’s height. Height is defined as the number of edges in the longest path from a given node to a leaf node.
+  //At moment find sortest path
   height(node, counter = 0) {
+    //Initial set to counter incase right of left child doesn't exist.
+    //This allows it to be compared in last return staement of the function
+    let leftTree = counter;
+    let rightTree = counter;
+    //If node doesn't exist
     if (node === null) {
+      console.log("Node doesn't exist");
+      return -1;
+    }
+
+    //Base case. When both children are null it is a leaf node
+    if (node.leftChild === null && node.rightChild === null) {
       return counter;
     }
 
+    //Recursive step.
     if (node.rightChild) {
-      return this.height(node.rightChild, ++counter);
+      rightTree = this.height(node.rightChild, counter + 1);
     }
     if (node.leftChild) {
-      return this.height(node.leftChild, ++counter);
+      leftTree = this.height(node.leftChild, counter + 1);
     }
+    // Checks highest counter value at each barcnch and returns it up the tree
+    return leftTree > rightTree ? leftTree : rightTree;
   }
   //Returns the given node’s depth. Depth is defined as the number of edges in the path from a given node to the tree’s root node.
   depth(node, traverseNode = this.root, counter = 0) {
