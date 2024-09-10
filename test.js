@@ -10,7 +10,9 @@ const tree = new BSTree(array);
 
 tree.insert(3.4);
 tree.insert(16346);
-tree.insert(324.5);
+// tree.insert(324.5);
+// tree.insert(324.2);
+// tree.insert(324.3);
 
 // tree.deleteItem(124);
 // tree.deleteItem(1);
@@ -58,3 +60,5 @@ console.log(
   "height",
   util.inspect(tree.height(root), { depth: null, colors: true })
 );
+
+console.log(tree.isBalanced());

@@ -317,4 +317,39 @@ export default class BSTree {
       return this.depth(node, traverseNode.rightChild, ++counter);
     }
   }
+
+  //Checks if the tree is balanced. A balanced tree is one where the difference between heights of the left subtree and the right subtree of every node is not more than 1.
+
+  isBalanced(node = this.root) {
+    let left = true;
+    let right = true;
+    //Checks differnce in height between two branches and if higher than one returns false.
+    if (
+      Math.abs(this.height(node.leftChild) - this.height(node.rightChild)) > 1
+    ) {
+      return false;
+    }
+
+    //When reaches a leaf node left and right must be equal and therefore balanced
+    if (node.leftChild === null && node.rightChild === null) {
+      left = true;
+      right = true;
+    }
+
+    //If left child exists recursively calls it to check if it's balanced
+    if (node.leftChild) {
+      left = this.isBalanced(node.leftChild);
+    }
+    //If right child exists recursively calls it to check if it's balanced
+    if (node.rightChild) {
+      right = this.isBalanced(node.rightChild);
+    }
+
+    //If either of the trees are unbalanced returns false
+    if (left && right) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
