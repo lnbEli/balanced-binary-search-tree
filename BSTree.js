@@ -7,6 +7,11 @@ export default class BSTree {
 
   // Method to build a balanced BST
   buildTree(array, initialCall = false) {
+    //If no array added then create root node
+    //Test!
+    if (array === undefined) {
+      return new BSTNode();
+    }
     // Base case
     if (array.length <= 0) {
       return null;
@@ -62,6 +67,11 @@ export default class BSTree {
     //Checks value entered is number
     if (typeof value !== "number") {
       console.log("Enter a number!");
+      return;
+    }
+    //Checks if first value to be added to tree
+    if (this.root.data === null) {
+      this.root.data = value;
       return;
     }
     //Value already exists and we don't want duplicates
@@ -330,10 +340,9 @@ export default class BSTree {
       return false;
     }
 
-    //When reaches a leaf node left and right must be equal and therefore balanced
+    //Base case. When reaches a leaf node left and right must be equal and therefore balanced
     if (node.leftChild === null && node.rightChild === null) {
-      left = true;
-      right = true;
+      return true;
     }
 
     //If left child exists recursively calls it to check if it's balanced
