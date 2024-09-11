@@ -64,10 +64,10 @@ import util from "util";
 // console.log(tree.isBalanced());
 
 // Test Case 1: A balanced tree
-const balancedTree = new BSTree();
+const balancedTree = new BSTree([]);
 
 balancedTree.insert(2); // Left child
 balancedTree.insert(3); // Right child
 balancedTree.insert(1); // Right child
-balancedTree.deleteItem(2);
+// balancedTree.deleteItem(2);
 console.log(balancedTree);
