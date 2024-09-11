@@ -36,10 +36,8 @@ import util from "util";
 //   console.log(node.data);
 // }
 
-// function counter(node) {}
-
 // // tree.levelOrderRecursive(printData);
-// tree.levelOrder(printData);
+// // tree.levelOrder(printData);
 
 // // console.log(tree.find(3.4));
 // // tree.inOrder(printData);
@@ -54,20 +52,40 @@ import util from "util";
 // // console.log("counter", tree.depth(node324));
 // // console.log("counter", tree.height(node324));
 // // console.log("counter", tree.height(root));
-
 // // console.log(tree.root.leftChild.leftChild.rightChild.data);
-// console.log(
-//   "height",
-//   util.inspect(tree.height(root), { depth: null, colors: true })
-// );
+// // console.log(tree.isBalanced());
+// // console.log(
+// //   "height",
+// //   util.inspect(tree.height(root), { depth: null, colors: true })
+// // );
+function arrOf100Numbers() {
+  const arr = [];
+  for (let i = 0; i < 100; i++) {
+    const randomNumber = Math.trunc(Math.random() * 100);
+    arr.push(randomNumber);
+  }
+  return arr;
+}
 
-// console.log(tree.isBalanced());
+function printElementCallback(node) {
+  console.log(node.data);
+}
 
-// Test Case 1: A balanced tree
-const balancedTree = new BSTree([]);
+arrOf100Numbers();
 
-balancedTree.insert(2); // Left child
-balancedTree.insert(3); // Right child
-balancedTree.insert(1); // Right child
-// balancedTree.deleteItem(2);
-console.log(balancedTree);
+const tree = new BSTree(arrOf100Numbers());
+tree.insert(103);
+tree.insert(112);
+tree.insert(193);
+tree.prettyPrint();
+console.log(tree.isBalanced());
+
+tree.inOrder(printElementCallback);
+tree.preOrder(printElementCallback);
+tree.postOrder(printElementCallback);
+console.log(tree.isBalanced());
+tree.rebalance();
+console.log(tree.isBalanced());
+tree.inOrder(printElementCallback);
+tree.preOrder(printElementCallback);
+tree.postOrder(printElementCallback);

@@ -264,8 +264,8 @@ export default class BSTree {
       return;
     }
     callback(node);
-    this.inOrder(callback, node.leftChild);
-    this.inOrder(callback, node.rightChild);
+    this.preOrder(callback, node.leftChild);
+    this.preOrder(callback, node.rightChild);
   }
   //left>right>root
   postOrder(callback, node = this.root) {
@@ -275,8 +275,8 @@ export default class BSTree {
     if (node === null) {
       return;
     }
-    this.inOrder(callback, node.leftChild);
-    this.inOrder(callback, node.rightChild);
+    this.postOrder(callback, node.leftChild);
+    this.postOrder(callback, node.rightChild);
     callback(node);
   }
   //Returns the given node’s height. Height is defined as the number of edges in the longest path from a given node to a leaf node.
@@ -288,15 +288,13 @@ export default class BSTree {
     let rightTree = counter;
     //If node doesn't exist
     if (node === null) {
-      console.log("Node doesn't exist");
+      // console.log("Node doesn't exist");
       return -1;
     }
-
     //Base case. When both children are null it is a leaf node
     if (node.leftChild === null && node.rightChild === null) {
       return counter;
     }
-
     //Recursive step.
     if (node.rightChild) {
       rightTree = this.height(node.rightChild, counter + 1);
@@ -322,22 +320,24 @@ export default class BSTree {
   }
 
   //Checks if the tree is balanced. A balanced tree is one where the difference between heights of the left subtree and the right subtree of every node is not more than 1.
-
   isBalanced(node = this.root) {
+    //Left and Right nodes true unless otherwise proven
     let left = true;
     let right = true;
+    //Check if tree is empty
+    if (node === null) {
+      return true;
+    }
     //Checks differnce in height between two branches and if higher than one returns false.
     if (
       Math.abs(this.height(node.leftChild) - this.height(node.rightChild)) > 1
     ) {
       return false;
     }
-
     //Base case. When reaches a leaf node left and right must be equal and therefore balanced
     if (node.leftChild === null && node.rightChild === null) {
       return true;
     }
-
     //If left child exists recursively calls it to check if it's balanced
     if (node.leftChild) {
       left = this.isBalanced(node.leftChild);
@@ -346,12 +346,19 @@ export default class BSTree {
     if (node.rightChild) {
       right = this.isBalanced(node.rightChild);
     }
-
     //If either of the trees are unbalanced returns false
     if (left && right) {
       return true;
     } else {
       return false;
     }
+  }
+  // Rebalances an unbalanced tree
+  rebalance() {
+    const arrayOfValues = [];
+    //Populates Array using inOrder traversal
+    this.inOrder((node) => arrayOfValues.push(node.data));
+    //Builds new balanced tree from array
+    this.root = this.buildTree(arrayOfValues);
   }
 }
